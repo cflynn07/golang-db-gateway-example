@@ -9,9 +9,9 @@ gateway:
   container_name: gateway
   image: golang:1.6.0-alpine
   volumes:
-    - ./:/example
-  working_dir: /example/gateway
-  command: go run gateway.go
+    - ./:/go/src/github.com/cflynn07/golang-db-gateway-example
+  working_dir: /go/src/github.com/cflynn07/golang-db-gateway-example
+  command: go run gateway/gateway.go
   environment:
     - MYSQL_ROOT_PASSWORD=root
     - MYSQL_DATABASE=sandbox
