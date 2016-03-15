@@ -1,0 +1,4 @@
+package: github.com/cflynn07/golang-db-gateway-example
+import:
+- package: github.com/gorilla/mux
+- package: github.com/go-sql-driver/mysql

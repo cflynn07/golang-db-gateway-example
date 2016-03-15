@@ -1,0 +1,19 @@
+mysql:
+  container_name: mysql_server
+  image: mysql:5.7.11
+  environment:
+    - MYSQL_ROOT_PASSWORD=root
+  ports:
+    - 3306
+gateway:
+  container_name: gateway
+  image: golang:1.6.0-alpine
+  volumes:
+    - ./:/example
+  working_dir: /example/gateway
+  command: go run gateway.go
+  environment:
+    - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_DATABASE=sandbox
+  links:
+    - mysql
