@@ -1,5 +1,5 @@
 mysql:
-  container_name: mysql_server
+  container_name: mysql
   image: mysql:5.7.11
   environment:
     - MYSQL_ROOT_PASSWORD=root
@@ -12,6 +12,18 @@ gateway:
     - ./:/go/src/github.com/cflynn07/golang-db-gateway-example
   working_dir: /go/src/github.com/cflynn07/golang-db-gateway-example
   command: go run gateway/gateway.go
+  environment:
+    - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_DATABASE=sandbox
+  links:
+    - mysql
+seed_mysql:
+  container_name: seed_mysql
+  image: golang:1.6.0-alpine
+  volumes:
+    - ./:/go/src/github.com/cflynn07/golang-db-gateway-example
+  working_dir: /go/src/github.com/cflynn07/golang-db-gateway-example
+  command: sleep 9999999
   environment:
     - MYSQL_ROOT_PASSWORD=root
     - MYSQL_DATABASE=sandbox

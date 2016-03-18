@@ -11,19 +11,24 @@ import (
 )
 
 var db *sql.DB
+var e error
 
 func main() {
+	fmt.Printf("gateway started\n")
+	fmt.Printf("gateway started\n")
+	fmt.Printf("gateway started\n")
 	r := mux.NewRouter()
 
-	var e error
 	db, e = sql.Open(
-		"mysql", os.ExpandEnv("root:${MYSQL_SERVER_PASSWORD}@mysql_server:3306/${MYSQL_DATABASE}"))
+		"mysql",
+		os.ExpandEnv("root:${MYSQL_SERVER_PASSWORD}@mysql_server:3306/${MYSQL_DATABASE}"),
+	)
 	fmt.Print("error is", e)
 
 	r.HandleFunc("/todos", getTodos).Methods("GET")
 
+	fmt.Printf("gateway started")
 	http.ListenAndServe(":8080", r)
-	fmt.Printf("gateway")
 }
 
 type todo struct{}
