@@ -3,6 +3,7 @@ mysql:
   image: mysql:5.7.11
   environment:
     - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_DATABASE=sandbox
   ports:
     - 3306
 gateway:
